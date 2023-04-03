@@ -97,8 +97,10 @@ static void prv_update_app_glance(AppGlanceReloadSession *session,
     struct tm* t_tm = gmtime(&t);
     t_tm->tm_mday++;
     time_t expiration_time = mktime(t_tm);
-      
-    if (!strftime(s_app_glance_buffer, sizeof s_app_glance_buffer, s_app_glance_fmt, localtime(&t))) {
+  setlocale(LC_TIME, "FR_fr");    
+  setlocale(LC_ALL, "fr_FR");
+  //strftime(s_app_buffer, sizeof s_app_buffer, "%A %d %B %Y", localtime(&current_time));
+    if (!strftime(s_app_glance_buffer, sizeof s_app_glance_buffer, "%A %d %B", localtime(&t))) {
       APP_LOG(APP_LOG_LEVEL_ERROR, "strftime error");
     }
   
@@ -121,6 +123,9 @@ static void prv_update_app_glance(AppGlanceReloadSession *session,
 static void refresh_ui() {
   time_t current_time = time(NULL);
   strftime(s_app_buffer, sizeof s_app_buffer, s_app_fmt, localtime(&current_time));
+  setlocale(LC_TIME, "FR_fr");    
+  setlocale(LC_ALL, "fr_FR");
+  strftime(s_app_buffer, sizeof s_app_buffer, "%A %d %B %Y", localtime(&current_time));
   layer_mark_dirty(s_canvas_layer);
 }
 
@@ -129,9 +134,9 @@ static void canvas_update_proc(Layer *layer, GContext *ctx) {
   graphics_context_set_text_color(ctx, GColorBlack);
   int center = bounds.origin.y + (bounds.size.h / 2);
   int width = bounds.size.w;
-  // graphics_draw_line(ctx, GPoint(bounds.origin.x, center), GPoint(width, center));
+//  graphics_draw_line(ctx, GPoint(bounds.origin.x, center), GPoint(width, center));
 
-  const char *labelText = "Today Is";
+  const char *labelText = "";
   GFont labelFont = fonts_get_system_font(FONT_KEY_GOTHIC_24);
   int labelHeight = font_get_height(labelFont, labelText, width, NULL);
 

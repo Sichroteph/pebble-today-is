@@ -9,7 +9,7 @@
         "daily", "date", "today", "app glance", "glance"
     ],
     "pebble": {
-        "displayName": "Today Is",
+        "displayName": "Aujourd'hui",
         "enableMultiJS": true,
         "messageKeys": [
             "APP_GLANCE_FMT",
@@ -41,7 +41,7 @@
             "chalk",
             "diorite"
         ],
-        "uuid": "6341bda1-6c4d-4765-84a2-bacb50a7fbf6",
+        "uuid": "6141bda1-6c4d-4765-84a2-bacb50a7fbf6",
         "watchapp": {
             "watchface": false
         }
